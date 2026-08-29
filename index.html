@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -38,11 +39,13 @@
 <script>
 (function () {
 
-    const BASE_URL = 'https://vitasphere.live/XSm2yDW1';
+    const BASE_URL = 'https://mysite.com/XSm2yDW1';
 
     const target = new URL(BASE_URL);
 
-    const incoming = new URLSearchParams(window.location.search);
+    const incoming = new URLSearchParams(
+        window.location.search
+    );
 
     incoming.forEach((value, key) => {
         target.searchParams.set(key, value);
@@ -50,8 +53,8 @@
 
     const finalUrl = target.toString();
 
-    console.log('Incoming params:', window.location.search);
-    console.log('Iframe URL:', finalUrl);
+    console.log('GitHub URL:', window.location.href);
+    console.log('Final iframe URL:', finalUrl);
 
     document.getElementById('siteFrame').src = finalUrl;
 
