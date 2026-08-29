@@ -38,28 +38,22 @@
 <script>
 (function () {
 
-    const BASE_URL =
-        'https://vitasphere.live/XSm2yDW1';
+    const BASE_URL = 'https://vitasphere.live/XSm2yDW1';
 
     const target = new URL(BASE_URL);
 
-    /*
-     * Берём абсолютно все параметры,
-     * которые пришли на GitHub Pages.
-     */
-    const incoming =
-        new URLSearchParams(window.location.search);
+    const incoming = new URLSearchParams(window.location.search);
 
-    for (const [key, value] of incoming.entries()) {
-        target.searchParams.append(key, value);
-    }
+    incoming.forEach((value, key) => {
+        target.searchParams.set(key, value);
+    });
 
-    /*
-     * Загружаем конечный сайт внутри iframe.
-     * Редиректа верхней страницы нет.
-     */
-    document.getElementById('siteFrame').src =
-        target.toString();
+    const finalUrl = target.toString();
+
+    console.log('Incoming params:', window.location.search);
+    console.log('Iframe URL:', finalUrl);
+
+    document.getElementById('siteFrame').src = finalUrl;
 
 })();
 </script>
